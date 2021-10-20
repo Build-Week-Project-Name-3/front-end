@@ -9,6 +9,7 @@ import { CssBaseline, AppBar, Toolbar, Typography, Button, Box } from '@mui/mate
 import MainCard from './components/MainCard';
 import LoginForm from './components/loginForm';
 import RegisterForm from './components/registerForm';
+import AddPlantForm from './components/addPlant';
 
 function App()
 {
@@ -54,7 +55,6 @@ function App()
             <CssBaseline />
 
             <Header />
-
             <div>
                 {error && <p>{error}</p>}
                 <Switch>
