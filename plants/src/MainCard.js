@@ -8,8 +8,8 @@ export default function MainCard() {
                 <CardMedia 
                     component="img"
                     height="900"
-                    image='https://images.unsplash.com/photo-1555037015-1498966bcd7c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=774&q=80'
-                    title="Plant In Hands"
+                    image="https://images.unsplash.com/photo-1555037015-1498966bcd7c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=774&q=80"
+                    title="Water Drops on Leaves"
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h3" component="div">Happy Plants, Happy Lives</Typography>
