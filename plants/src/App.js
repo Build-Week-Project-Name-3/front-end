@@ -7,21 +7,22 @@ import MainCard from './components/MainCard';
 import LoginForm from './components/loginForm';
 import RegisterForm from './components/registerForm';
 import axios from "axios";
+import { useHistory } from 'react-router-dom';
 
 function App()
 {
     const [error, setError] = useState("");
+    const history = useHistory();
 
     async function handleRegisterSubmit(data)
     {
-        // const res = await axios.post('https://build-week-water-my-plants-1.herokuapp.com/api/auth/register', data);
-        // console.log("register response:", res);
-
         axios.post('https://build-week-water-my-plants-1.herokuapp.com/api/auth/register', data)
             .then((res) => 
             {
                 console.log("register response:", res);
-                // TODO: redirect to login page
+
+                // redirect to login page
+                history.push("/login");
             })
             .catch((err) => 
             {
