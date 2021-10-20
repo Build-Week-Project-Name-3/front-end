@@ -1,46 +1,78 @@
 import './App.css';
-import React from 'react'
-import Plant from './Plant';
-import Header from './Header'
-import ReactDOM from 'react-dom';
-import { CssBaseline, AppBar, Toolbar, Typography, Button, Box } from '@mui/material'
-import GrassIcon from '@mui/icons-material/Grass'
-import MainCard from './MainCard';
-import LoginForm from './loginForm';
-import RegisterForm from './registerForm';
+import React, { useState } from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import axios from "axios";
-const appStyle = {
-	height: '250px',
-  	display: 'flex'
-};
 
-function App() {
+import Header from './components/Header';
+import { CssBaseline, AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
+import MainCard from './components/MainCard';
+import LoginForm from './components/loginForm';
+import RegisterForm from './components/registerForm';
 
-    async function handleRegisterSubmit(data) {
-      const res = await axios.post('https://build-week-water-my-plants-1.herokuapp.com/api/auth/register', data);
-      console.log(res);
+function App()
+{
+    const [error, setError] = useState("");
+    const history = useHistory();
+
+    async function handleRegisterSubmit(data)
+    {
+        axios.post('https://build-week-water-my-plants-1.herokuapp.com/api/auth/register', data)
+            .then((res) => 
+            {
+                console.log("register response:", res);
+
+                // redirect to login page
+                history.push("/login");
+            })
+            .catch((err) => 
+            {
+                console.log(err);
+                setError(err.toString());
+            });
+
     }
-    async function handleLoginSubmit(data) {
-      const res = await axios.post('https://build-week-water-my-plants-1.herokuapp.com/api/auth/login', data);
-      console.log(res);
+
+    async function handleLoginSubmit(data)
+    {
+        axios.post('https://build-week-water-my-plants-1.herokuapp.com/api/auth/login', data)
+            .then((res) => 
+            {
+                console.log("login response:", res);
+                sessionStorage.setItem("token", res.data.token);
+                sessionStorage.setItem("userId", res.data.user_id);
+            })
+            .catch((err) => 
+            {
+                console.log(err);
+                setError(err.toString());
+            });
     }
-  return (
-    <>
-      <CssBaseline />
 
-        <Header />
-        <main>
-          <Box sx={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-            <MainCard />
-            <h2>An example of plant care instructions:</h2>
-            <Plant />
-          </Box>
-        </main>
+    return (
+        <>
+            <CssBaseline />
 
-      <RegisterForm onSubmit={handleRegisterSubmit} />
-        <LoginForm onSubmit={handleLoginSubmit} />
-    </>
-  );
+            <Header />
+
+            <div>
+                {error && <p>{error}</p>}
+                <Switch>
+                    <Route exact path="/">
+                        <MainCard />
+                    </Route>
+
+                    <Route path="/register">
+                        <RegisterForm onSubmit={handleRegisterSubmit} />
+                    </Route>
+
+                    <Route path="/login">
+                        <LoginForm onSubmit={handleLoginSubmit} />
+                    </Route>
+                </Switch>
+            </div>
+        </>
+    );
 }
 
 export default App;
