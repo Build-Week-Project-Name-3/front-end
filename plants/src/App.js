@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Header from './components/Header';
 import { CssBaseline, AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
@@ -10,17 +10,43 @@ import axios from "axios";
 
 function App()
 {
+    const [error, setError] = useState("");
 
     async function handleRegisterSubmit(data)
     {
-        const res = await axios.post('https://build-week-water-my-plants-1.herokuapp.com/api/auth/register', data);
-        console.log(res);
+        // const res = await axios.post('https://build-week-water-my-plants-1.herokuapp.com/api/auth/register', data);
+        // console.log("register response:", res);
+
+        axios.post('https://build-week-water-my-plants-1.herokuapp.com/api/auth/register', data)
+            .then((res) => 
+            {
+                console.log("register response:", res);
+                // TODO: redirect to login page
+            })
+            .catch((err) => 
+            {
+                console.log(err);
+                setError(err.toString());
+            });
+
     }
+
     async function handleLoginSubmit(data)
     {
-        const res = await axios.post('https://build-week-water-my-plants-1.herokuapp.com/api/auth/login', data);
-        console.log(res);
+        axios.post('https://build-week-water-my-plants-1.herokuapp.com/api/auth/login', data)
+            .then((res) => 
+            {
+                console.log("login response:", res);
+                sessionStorage.setItem("token", res.data.token);
+                sessionStorage.setItem("userId", res.data.user_id);
+            })
+            .catch((err) => 
+            {
+                console.log(err);
+                setError(err.toString());
+            });
     }
+
     return (
         <>
             <CssBaseline />
@@ -28,6 +54,7 @@ function App()
             <Header />
 
             <div>
+                {error && <p>{error}</p>}
                 <Switch>
                     <Route exact path="/">
                         <MainCard />
