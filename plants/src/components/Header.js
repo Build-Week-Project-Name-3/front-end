@@ -5,7 +5,7 @@ import GrassIcon from '@mui/icons-material/Grass';
 
 export default function Header()
 {
-    const isLoggedIn = localStorage.getItem("token");
+    const isLoggedIn = sessionStorage.getItem("token");
     console.log("isLoggedIn", isLoggedIn);
 
     return (
