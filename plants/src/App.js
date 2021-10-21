@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useState } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
+import { createBrowserHistory } from "history";
 import axios from "axios";
 import Dashboard from './components/Dashboard';
 
@@ -10,12 +10,14 @@ import { CssBaseline, AppBar, Toolbar, Typography, Button, Box } from '@mui/mate
 import MainCard from './components/MainCard';
 import LoginForm from './components/loginForm';
 import RegisterForm from './components/registerForm';
+import Logout from './components/Logout';
 import AddPlantForm from './components/addPlant';
+
 
 function App()
 {
     const [error, setError] = useState("");
-    const history = useHistory();
+    const history = createBrowserHistory({ forceRefresh: true });
 
     async function handleRegisterSubmit(data)
     {
@@ -43,6 +45,10 @@ function App()
                 console.log("login response:", res);
                 sessionStorage.setItem("token", res.data.token);
                 sessionStorage.setItem("userId", res.data.user_id);
+
+                // redirecting to home page for now
+                // TODO: redirect to dashboard
+                history.push("/");
             })
             .catch((err) => 
             {
@@ -70,6 +76,9 @@ function App()
                     <Route path="/login">
                         <LoginForm onSubmit={handleLoginSubmit} />
                     </Route>
+
+                    <Route path="/logout" component={Logout} />
+
                 </Switch>
             </div>
         </>
