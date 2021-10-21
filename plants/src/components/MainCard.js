@@ -1,5 +1,4 @@
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from "@mui/material";
-import { maxHeight } from "@mui/system";
 import React from "react";
 
 export default function MainCard() {

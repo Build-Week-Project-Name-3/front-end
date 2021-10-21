@@ -8,6 +8,7 @@ import
     CardMedia,
     Typography,
 } from "@mui/material";
+import Button from '@mui/material/Button';
 import { createBrowserHistory } from "history";
 import axiosWithAuth from "../utilities/axiosWithAuth";
 
@@ -31,7 +32,6 @@ const Dashboard = (props) =>
     return (
         <>
             <Card sx={{ width: 2 / 2 }}>
-                <CardActionArea>
                     <CardMedia
                         component="img"
                         height={imgHeight}
@@ -43,8 +43,8 @@ const Dashboard = (props) =>
                             These are the plants that are currently in your care:
                         </Typography>
                     </CardContent>
-                </CardActionArea>
             </Card>
+            <Button href='./addPlant'variant="contained">Add A Plant</Button>
             {plants.map((item, index) => (
                 <Plant key={index} plant={item} />
             ))}
