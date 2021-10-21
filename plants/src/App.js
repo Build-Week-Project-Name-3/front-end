@@ -20,6 +20,7 @@ import LoginForm from "./components/loginForm";
 import RegisterForm from "./components/registerForm";
 import Logout from "./components/Logout";
 import AddPlantForm from "./components/addPlant";
+import axiosWithAuth from "./utilites/axiosWithAuth";
 
 function App() {
   const [plants, setPlants] = useState([]);
@@ -54,6 +55,22 @@ function App() {
         console.log("login response:", res);
         sessionStorage.setItem("token", res.data.token);
         sessionStorage.setItem("userId", res.data.user_id);
+        history.push("/plants");
+      })
+      .catch((err) => {
+        console.log(err);
+        setError(err.toString());
+      });
+  }
+
+  async function handleAddPlant(data) {
+    axiosWithAuth()
+      .post("/plants", data)
+      .then((res) => {
+        console.log("add plant response:", res);
+        setPlants(...plants, res.data);
+        history.push("/plants");
+        console.log(plants);
       })
       .catch((err) => {
         console.log(err);
@@ -83,7 +100,7 @@ function App() {
           <Route path="/logout" component={Logout} />
 
           <Route path="/plants/add">
-            <AddPlantForm setError={setError} />
+            <AddPlantForm onSubmit={handleAddPlant} setError={setError} />
           </Route>
 
           <Route path="/plants/:id">

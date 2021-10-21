@@ -20,7 +20,7 @@ export default function AddPlantForm(props) {
     const data = {
       plant_name: plantNameRef.current.value,
       image_url: imageUrlRef.current.value,
-      h20Frequency: h2oFrequencyRef.current.value,
+      h2oFrequency: h2oFrequencyRef.current.value,
       plant_species: plantSpeciesRef.current.value,
     };
     submit(data);
