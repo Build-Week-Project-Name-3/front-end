@@ -13,6 +13,7 @@ const Logout = (props) =>
 
     }, [history]);
 
+
     return (<div></div>);
 };
 
