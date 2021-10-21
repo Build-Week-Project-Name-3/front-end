@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import Plant from "./Plant";
 import
 {
@@ -7,9 +8,11 @@ import
     CardContent,
     CardMedia,
     Typography,
+    Button
 } from "@mui/material";
 import { createBrowserHistory } from "history";
 import axiosWithAuth from "../utilities/axiosWithAuth";
+
 
 const Dashboard = (props) =>
 {
@@ -42,6 +45,7 @@ const Dashboard = (props) =>
                         <Typography gutterBottom variant="h3" component="div">
                             These are the plants that are currently in your care:
                         </Typography>
+                        <Link to="/plants/add"><Button color="secondary" size="medium" variant="contained">Add Plant</Button></Link>
                     </CardContent>
                 </CardActionArea>
             </Card>
