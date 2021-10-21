@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useState } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
+import { createBrowserHistory } from "history";
 import axios from "axios";
 
 import Header from './components/Header';
@@ -13,7 +13,7 @@ import RegisterForm from './components/registerForm';
 function App()
 {
     const [error, setError] = useState("");
-    const history = useHistory();
+    const history = createBrowserHistory({ forceRefresh: true });
 
     async function handleRegisterSubmit(data)
     {
@@ -41,6 +41,10 @@ function App()
                 console.log("login response:", res);
                 sessionStorage.setItem("token", res.data.token);
                 sessionStorage.setItem("userId", res.data.user_id);
+
+                // redirecting to home page for now
+                // TODO: redirect to dashboard
+                history.push("/");
             })
             .catch((err) => 
             {
