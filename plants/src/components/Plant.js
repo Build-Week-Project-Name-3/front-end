@@ -16,6 +16,10 @@ export default function Plant(props) {
     history.push(`/plants/${plant.plant_id}`);
   };
 
+  const handleDelete = (e) => {
+    history.push(`/plants/delete/${plant.plant_id}`);
+  };
+
   return (
     <Card sx={{ maxWidth: 500, borderRadius: 10 }} variant="outlined">
       <CardContent
@@ -33,7 +37,7 @@ export default function Plant(props) {
         </Typography>
         <ButtonGroup disableElevation variant="contained">
           <Button onClick={handleEdit}>Edit Plant</Button>
-          <Button variant="outlined">Delete Plant</Button>
+          <Button onClick={handleDelete} variant="outlined">Delete Plant</Button>
         </ButtonGroup>
       </CardContent>
     </Card>
