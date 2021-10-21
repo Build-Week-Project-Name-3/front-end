@@ -47,7 +47,7 @@ const DeletePlantModal = (props) => {
   };
 
   return (
-    <div className="modal">
+    <div style={cardStyle} className="modal">
       <h2>Are you sure you want to delete {deletedPlant.plant_name}?</h2>
       <p className="errMsg">
         This action is permanent, changes can not be reverted
@@ -84,6 +84,12 @@ const DeletePlantModal = (props) => {
       </Card>
     </div>
   );
+};
+
+const cardStyle = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
 };
 
 export default DeletePlantModal;
