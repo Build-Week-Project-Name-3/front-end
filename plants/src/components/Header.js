@@ -17,6 +17,7 @@ export default function Header()
                     <Link to="/"><Button color="secondary" size="medium" variant="contained">Home</Button></Link>
                     {!isLoggedIn && <Link to="/login"><Button color="secondary" size="medium" variant="contained">Login</Button></Link>}
                     {!isLoggedIn && <Link to="/register"><Button color="secondary" size="medium" variant="contained">Register</Button></Link>}
+                    {isLoggedIn && <Link to="/logout"><Button color="secondary" size="medium" variant="contained">Logout</Button></Link>}
                 </Toolbar>
             </AppBar>
         </Box>

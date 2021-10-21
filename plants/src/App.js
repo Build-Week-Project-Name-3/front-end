@@ -9,6 +9,7 @@ import { CssBaseline, AppBar, Toolbar, Typography, Button, Box } from '@mui/mate
 import MainCard from './components/MainCard';
 import LoginForm from './components/loginForm';
 import RegisterForm from './components/registerForm';
+import Logout from './components/Logout';
 
 function App()
 {
@@ -73,6 +74,9 @@ function App()
                     <Route path="/login">
                         <LoginForm onSubmit={handleLoginSubmit} />
                     </Route>
+
+                    <Route path="/logout" component={Logout} />
+
                 </Switch>
             </div>
         </>
