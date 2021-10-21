@@ -41,7 +41,7 @@ const Dashboard = (props) => {
             <Typography gutterBottom variant="h3" component="div">
               These are the plants that are currently in your care:
             </Typography>
-            <Link to="/plants/add">
+            <Link style={LinkStyle} to="/plants/add">
               <Button color="secondary" size="medium" variant="contained">
                 Add Plant
               </Button>
@@ -56,4 +56,7 @@ const Dashboard = (props) => {
   );
 };
 
+const LinkStyle = {
+  textDecoration: "none",
+};
 export default Dashboard;
