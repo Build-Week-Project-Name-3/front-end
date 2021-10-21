@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../utilites/axiosWithAuth";
 import { Link } from "react-router-dom";
 import { useHistory, useParams } from "react-router";
+import { createBrowserHistory } from "history";
 
 const initialState = {
   plant_name: "",
@@ -12,9 +13,8 @@ const initialState = {
 
 const EditPlantForm = (props) => {
   const [plantValues, setPlantValues] = useState(initialState);
-  //assuming the state for plants in dashboard is set as plants and setPlants
+  const history = createBrowserHistory({ forceRefresh: true });
   const { plants, setPlants, setError } = props;
-  const { push } = useHistory();
   const { id } = useParams();
 
   useEffect(() => {
@@ -40,11 +40,10 @@ const EditPlantForm = (props) => {
       .put(`/plants/${id}`, plantValues)
       .then((res) => {
         console.log(res);
-        // const newPlants = plants.filter((item) => item.plant_id !== id);
-        // newPlants.push(res.data);
-        // setPlants(newPlants);
-        // not sure how to handle pushing yet
-        // push("/dashboard");
+        const newPlants = plants.filter((item) => item.plant_id !== id);
+        newPlants.push(res.data);
+        setPlants([...newPlants]);
+        history.push("/plants");
       })
       .catch((err) => setError(err));
   };
@@ -108,7 +107,7 @@ const EditPlantForm = (props) => {
               </label>
             </div>
             <div>
-              <Link style={submitStyle} to="/dashboard" className="button">
+              <Link style={submitStyle} to="/plants" className="button">
                 Back
               </Link>
             </div>

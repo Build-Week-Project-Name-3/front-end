@@ -22,6 +22,7 @@ import Logout from "./components/Logout";
 import AddPlantForm from "./components/addPlant";
 
 function App() {
+  const [plants, setPlants] = useState([]);
   const [error, setError] = useState("");
   const history = createBrowserHistory({ forceRefresh: true });
 
@@ -62,7 +63,7 @@ function App() {
 
   return (
     <>
-      <CssBaseline />c
+      <CssBaseline />
       <Header />
       <div>
         {error && <p>{error}</p>}
@@ -86,7 +87,19 @@ function App() {
           </Route>
 
           <Route path="/plants/:id">
-            <EditPlantForm setError={setError} />
+            <EditPlantForm
+              setError={setError}
+              plants={plants}
+              setPlants={setPlants}
+            />
+          </Route>
+
+          <Route path="/plants">
+            <Dashboard
+              setError={setError}
+              plants={plants}
+              setPlants={setPlants}
+            />
           </Route>
         </Switch>
       </div>
