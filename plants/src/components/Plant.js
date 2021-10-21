@@ -1,10 +1,10 @@
-import { Card, CardContent, CardMedia } from "@mui/material";
+import { Button, ButtonGroup, Card, CardContent, CardMedia } from "@mui/material";
 import { Typography } from "@mui/material";
 import React from "react";
 
 export default function Plant(props) {
     return (
-        <Card sx={{ minWidth: 500, borderRadius: 10 }} variant="outlined">
+        <Card sx={{ maxWidth: 500, borderRadius: 10 }} variant="outlined">
             <CardContent sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                 <Typography variant="h4" component="div">
                     Name: {props.plant_name}
@@ -20,6 +20,10 @@ export default function Plant(props) {
                 <Typography sx={{ fontSize: 15 }} color="text.secondary" gutterBottom>
                     Species: {props.plant_species}
                 </Typography>
+                <ButtonGroup disableElevation variant="contained">
+                <Button>Edit Plant</Button>
+                <Button variant="outlined">Delete Plant</Button>
+            </ButtonGroup>
             </CardContent>
         </Card>
     )
