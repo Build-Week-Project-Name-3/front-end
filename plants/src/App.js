@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import axios from "axios";
+import Dashboard from './components/Dashboard';
 
 import Header from './components/Header';
 import { CssBaseline, AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
