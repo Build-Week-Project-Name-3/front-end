@@ -32,7 +32,7 @@ export default function AddPlantForm(props) {
       <Field ref={plantSpeciesRef} label="Plant Species*" type="text" />
       <Field
         ref={h2oFrequencyRef}
-        label="Watering Frequency (Days)*"
+        label="Watering Frequency (Days)"
         type="text"
       />
       <Field ref={imageUrlRef} label="Image Url" type="text" />
