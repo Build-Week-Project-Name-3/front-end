@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { createBrowserHistory } from "history";
 import axios from "axios";
+import Dashboard from './components/Dashboard';
 
 import Header from './components/Header';
 import { CssBaseline, AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
@@ -10,6 +11,8 @@ import MainCard from './components/MainCard';
 import LoginForm from './components/loginForm';
 import RegisterForm from './components/registerForm';
 import Logout from './components/Logout';
+import AddPlantForm from './components/addPlant';
+
 
 function App()
 {
@@ -59,7 +62,6 @@ function App()
             <CssBaseline />
 
             <Header />
-
             <div>
                 {error && <p>{error}</p>}
                 <Switch>
